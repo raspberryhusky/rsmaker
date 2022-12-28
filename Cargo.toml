@@ -1,0 +1,29 @@
+
+[package]
+name = "rsmaker"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+obfstr = "0.3.0"
+reqwest = { version = "*", features = ["blocking"] }
+rand = "*"
+base64 = "0.13.0"
+rust-embed="6.4.0"
+whoami = "*"
+libaes = "*"
+uuid={version = "1.1.2",features = [
+    "v5",                # Lets you generate random UUIDs
+
+]}
+clap = "*"
+[profile.release]
+lto = true
+opt-level = "z"               # 使用稍高一些的优化级别，最低是0，最高是3
+overflow-checks = false
+strip = "symbols"
+codegen-units = 1
+panic = 'abort'
+code-model = "tiny"

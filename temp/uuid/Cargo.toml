@@ -1,0 +1,17 @@
+[package]
+name = "uuid"
+version = "0.1.0"
+edition = "2021"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+windows = { version = "*",features = ["Win32_System_Rpc","Win32_Globalization", "Win32_Foundation"]}
+winapi = {version = "0.3.9", features = ["heapapi","handleapi","winnls","winnt","rpcdce"]}
+base64 = "0.13.0"
+[profile.release]
+lto = true
+opt-level = "z"               # 使用稍高一些的优化级别，最低是0，最高是3
+overflow-checks = false
+strip = "symbols"
+codegen-units = 1
+panic = 'abort'
